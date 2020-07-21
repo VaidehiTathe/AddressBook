@@ -8,42 +8,42 @@ namespace AddressBook
     {
         private string firstName, lastName, address, city, state;
         private int zip, phoneNumber;
-         public string getFirstName
+         public string FirstName
          {
             get { return firstName; }
             set { firstName = value; }
          }
-         public string getLastName
+         public string LastName
          {
              get { return lastName; }
              set { lastName = value; }
          }
-        public string getAddress
+        public string Address
         {
             get { return address; }
             set { address = value; }
         }
 
-        public string getCity
+        public string City
         {
             get { return city; }
             set { city = value; }
         }
 
-        public string getState
+        public string State
         {
             get { return state; }
             set { state = value; }
         }
-        public int getZip
+        public int Zip
         {
             get { return zip; }
             set { zip = value; }
         }
-        public int getPhoneNumber
+        public int PhoneNumber
         {
             get { return phoneNumber; }
-            set => phoneNumber = value;
+            set { phoneNumber = value; }
         }
 
     }

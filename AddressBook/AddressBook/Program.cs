@@ -8,26 +8,26 @@ namespace AddressBook
         {
             //Console.WriteLine("Hello World!");
             Person person = new Person();
-            person.getFirstName = "Vaidehi";
-            Console.WriteLine("First name is:" + person.getFirstName);
+            person.FirstName = "Vaidehi";
+            Console.WriteLine("First name is:" + person.FirstName);
 
-            person.getLastName = "Tathe";
-            Console.WriteLine("Last name is:" + person.getLastName);
+            person.LastName = "Tathe";
+            Console.WriteLine("Last name is:" + person.LastName);
 
-            person.getAddress = "Rajgad";
-            Console.WriteLine("Address is:" + person.getAddress);
+            person.Address = "Rajgad";
+            Console.WriteLine("Address is:" + person.Address);
 
-            person.getCity = "Solapur";
-            Console.WriteLine("City is:" + person.getCity);
+            person.City = "Solapur";
+            Console.WriteLine("City is:" + person.City);
 
-            person.getState = "Maharashtra";
-            Console.WriteLine("State is:" + person.getState);
+            person.State = "Maharashtra";
+            Console.WriteLine("State is:" + person.State);
 
-            person.getZip = "413003";
-            Console.WriteLine("Zip code is:" + person.getZip);
+            person.Zip = 413003;
+            Console.WriteLine("Zip code is:" + Convert.ToInt32(person.Zip));
 
-            person.phoneNumber = 9823458484;
-            Console.WriteLine("phoneNumber is:" + person.getphoneNumber);
+            person.PhoneNumber = unchecked((int)9883456765);
+            Console.WriteLine("Mobile number is:" + Convert.ToInt32(person.PhoneNumber));
         }
     }
 }
