@@ -12,6 +12,7 @@ namespace AddressBook
     {
         private string firstName, lastName, address, city, state,zip,phoneNumber;
         public ArrayList PersonData = new ArrayList();
+        int number;
         public Person(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber)
         {
             this.firstName = firstName;
@@ -86,29 +87,33 @@ namespace AddressBook
 
         public void AddPerson()
         {
-            Console.WriteLine("Enter your first name:");
-            string firstName = Console.ReadLine();
-            
-            Console.WriteLine("Enter your last name:");
-            string lastName = Console.ReadLine();
-           
-            Console.WriteLine("Enter your address:");
-            string address = Console.ReadLine();
-            
-            Console.WriteLine("Enter your city:");
-            string city = Console.ReadLine();
-           
-            Console.WriteLine("Enter your state:");
-            string state = Console.ReadLine();
-            
-            Console.WriteLine("Enter your zip code:");
-            string zip = Console.ReadLine();
+            Console.WriteLine("Enter total number of people that you want to add:");
+            int totalnumber = Convert.ToInt32(Console.ReadLine());
+            for (number = 1; number <= totalnumber; number++)
+            {
+                Console.WriteLine("Enter your first name:");
+                string firstName = Console.ReadLine();
 
-            Console.WriteLine("Enter your phoneNumber:");
-            string phoneNumber = Console.ReadLine();
+                Console.WriteLine("Enter your last name:");
+                string lastName = Console.ReadLine();
 
-            PersonData.Add(new Person(firstName, lastName, address, city, state, zip, phoneNumber));
-           
+                Console.WriteLine("Enter your address:");
+                string address = Console.ReadLine();
+
+                Console.WriteLine("Enter your city:");
+                string city = Console.ReadLine();
+
+                Console.WriteLine("Enter your state:");
+                string state = Console.ReadLine();
+
+                Console.WriteLine("Enter your zip code:");
+                string zip = Console.ReadLine();
+
+                Console.WriteLine("Enter your phoneNumber:");
+                string phoneNumber = Console.ReadLine();
+
+                PersonData.Add(new Person(firstName, lastName, address, city, state, zip, phoneNumber));
+            }
         }
 
         public void DisplayPerson()
