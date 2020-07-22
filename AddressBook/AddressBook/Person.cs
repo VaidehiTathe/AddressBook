@@ -155,5 +155,25 @@ namespace AddressBook
             }
         }
 
+        public Person SearchPerson(string name)
+        {
+            foreach (Person person in PersonData)
+            {
+                if(person.GetFirstName().Equals(name))
+                {
+                    return person;
+                }
+            }
+            return null;
+        }
+        public void DeletePerson()
+        {
+            Console.WriteLine("Enter the user name which you want to delete:");
+            string name = Console.ReadLine();
+            Person deletePerson = SearchPerson(name);
+            PersonData.Remove(deletePerson);
+            Console.WriteLine("User deleted successfully");
+        }
+
     }
 }
