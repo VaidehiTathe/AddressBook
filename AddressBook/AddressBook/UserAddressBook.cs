@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Linq.Expressions;
 
 namespace AddressBook
 {
@@ -6,31 +8,31 @@ namespace AddressBook
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello World!");
             Person person = new Person();
 
-            person.AddPerson();
+            int flag = 0;
+            do
+            {
+                Console.WriteLine("Enter your choice 1.ADD 2.Display 3.Edit 4.Exit");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        person.AddPerson();
+                        break;
+                    case 2:
+                        person.DisplayPerson();
+                        break;
+                    case 3:
+                        person.EditPerson();
+                        break;
+                    case 4:
+                        flag = 1;
+                        break;
 
-            person.FirstName = "Vaidehi";
-            Console.WriteLine("First name is:" + person.FirstName);
-
-            person.LastName = "Tathe";
-            Console.WriteLine("Last name is:" + person.LastName);
-
-            person.Address = "Rajgad";
-            Console.WriteLine("Address is:" + person.Address);
-
-            person.City = "Solapur";
-            Console.WriteLine("City is:" + person.City);
-
-            person.State = "Maharashtra";
-            Console.WriteLine("State is:" + person.State);
-
-            person.Zip = 413003;
-            Console.WriteLine("Zip code is:" + Convert.ToInt32(person.Zip));
-
-            person.PhoneNumber = unchecked((int)9883456765);
-            Console.WriteLine("Mobile number is:" + Convert.ToInt32(person.PhoneNumber));
+                }
+            } while (flag == 0);
+           
         }
     }
 }
