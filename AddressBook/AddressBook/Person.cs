@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Security.Cryptography.X509Certificates;
+using System.Data;
+using System.IO.Compression;
+using System.Runtime.InteropServices;
 using System.Text;
 
-namespace AddressBook
+namespace AddressBookNew
 {
     public class Person
     {
-        private string firstName, lastName, address, city, state,zip,phoneNumber;
+        public string firstName, lastName, address, city, state, zip, phoneNumber;
         bool duplicate;
-        public ArrayList PersonData = new ArrayList();
+        List<Person> PersonData = new List<Person>();
         int number;
         public Person(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber)
         {
@@ -24,7 +24,6 @@ namespace AddressBook
             this.zip = zip;
             this.phoneNumber = phoneNumber;
         }
-
         public string GetFirstName()
         {
             return this.firstName;
@@ -88,17 +87,16 @@ namespace AddressBook
         {
             foreach (Person person in PersonData)
             {
-                if (person.GetFirstName().Equals(firstName))
+                if(firstName.Equals(person.firstName))
                 {
                     Console.WriteLine("Records already exists");
                     duplicate = true;
-                    //return person;
                 }
                 else
                 {
                     Console.WriteLine("Record not found");
                     duplicate = false;
-                    
+
                 }
             }
             return false;
@@ -108,34 +106,34 @@ namespace AddressBook
         {
             Console.WriteLine("Enter total number of people that you want to add:");
             int totalnumber = Convert.ToInt32(Console.ReadLine());
+            int p;
+
             for (number = 1; number <= totalnumber; number++)
             {
-                Console.WriteLine("Enter your first name:");
-                string firstName = Console.ReadLine();
+                    Console.WriteLine("Enter your first name:");
+                    string firstName = Console.ReadLine();
 
-                Console.WriteLine("Enter your last name:");
-                string lastName = Console.ReadLine();
-                CheckDuplicate(firstName);
-                if (duplicate == false)
-                {
-                    Console.WriteLine("Enter your address:");
-                    string address = Console.ReadLine();
+                    Console.WriteLine("Enter your last name:");
+                    string lastName = Console.ReadLine();
+                    CheckDuplicate(firstName);
+                    if (duplicate == false)
+                    {
+                        Console.WriteLine("Enter your address:");
+                        string address = Console.ReadLine();
 
-                    Console.WriteLine("Enter your city:");
-                    string city = Console.ReadLine();
+                        Console.WriteLine("Enter your city:");
+                        string city = Console.ReadLine();
 
-                    Console.WriteLine("Enter your state:");
-                    string state = Console.ReadLine();
+                        Console.WriteLine("Enter your state:");
+                        string state = Console.ReadLine();
 
-                    Console.WriteLine("Enter your zip code:");
-                    string zip = Console.ReadLine();
+                        Console.WriteLine("Enter your zip code:");
+                        string zip = Console.ReadLine();
 
-                    Console.WriteLine("Enter your phoneNumber:");
-                    string phoneNumber = Console.ReadLine();
-
-                    PersonData.Add(new Person(firstName, lastName, address, city, state, zip, phoneNumber));
-                }
-                
+                        Console.WriteLine("Enter your phoneNumber:");
+                        string phoneNumber = Console.ReadLine();
+                        PersonData.Add(new Person(firstName, lastName, address, city, state, zip, phoneNumber));
+                    }
             }
         }
 
@@ -143,43 +141,54 @@ namespace AddressBook
         {
             foreach (Person persons in PersonData)
             {
-                Console.WriteLine("First Name:"+ persons.GetFirstName());
-                Console.WriteLine("Last Name:"+ persons.GetLastName());
-                Console.WriteLine("Address:"+persons.GetAddress());
-                Console.WriteLine("State:"+ persons.GetState());
+                Console.WriteLine("First Name:" + persons.GetFirstName());
+                Console.WriteLine("Last Name:" + persons.GetLastName());
+                Console.WriteLine("Address:" + persons.GetAddress());
+                Console.WriteLine("State:" + persons.GetState());
                 Console.WriteLine("City:" + persons.GetCity());
                 Console.WriteLine("Zip:" + persons.Getzip());
-                Console.WriteLine("Phone number:"+ persons.GetPhoneNumber());
-               
+                Console.WriteLine("Phone number:" + persons.GetPhoneNumber());
+
             }
         }
 
         public void EditPerson()
         {
-            Person editPerson = new Person("", "", "", "", "", "","");
             Console.WriteLine("Enter the name of person");
-            firstName = Console.ReadLine();
-            foreach (Person person in PersonData)
+            string name = Console.ReadLine();
+            Person editPerson = SearchPerson(name);
+
+            Console.WriteLine("Enter choice: 1.Address 2.City 3.State 4.Zip 5.Phone Number 6.exit");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
             {
-                if (person.GetFirstName().Equals(firstName))
-                {
-                    editPerson = person;
-                }
-                Console.WriteLine("Enter the address");
-                String address = Console.ReadLine();
-                editPerson.SetAddress(address);
-                Console.WriteLine("Enter the city");
-                String city = Console.ReadLine();
-                editPerson.SetCity(city);
-                Console.WriteLine("Enter the state");
-                String state = Console.ReadLine();
-                editPerson.SetState(state);
-                Console.WriteLine("Enter the zip");
-                String zip = Console.ReadLine();
-                editPerson.SetZip(zip);
-                Console.WriteLine("Enter the phone number");
-                String phoneNumber = Console.ReadLine();
-                editPerson.SetPhoneNumber(phoneNumber);
+                case 1:
+                    Console.WriteLine("Enter the address");
+                    String address = Console.ReadLine();
+                    editPerson.SetAddress(address);
+                    break;
+                case 2:
+                    Console.WriteLine("Enter the city");
+                    String city = Console.ReadLine();
+                    editPerson.SetCity(city);
+                    break;
+                case 3:
+                    Console.WriteLine("Enter the state");
+                    String state = Console.ReadLine();
+                    editPerson.SetState(state);
+                    break;
+                case 4:
+                    Console.WriteLine("Enter the zip");
+                    String zip = Console.ReadLine();
+                    editPerson.SetZip(zip);
+                    break;
+                case 5:
+                    Console.WriteLine("Enter the phone number");
+                    String phoneNumber = Console.ReadLine();
+                    editPerson.SetPhoneNumber(phoneNumber);
+                    break;
+                case 6:
+                    break;
             }
         }
 
@@ -187,7 +196,7 @@ namespace AddressBook
         {
             foreach (Person person in PersonData)
             {
-                if(person.GetFirstName().Equals(name))
+                if (person.GetFirstName().Equals(name))
                 {
                     return person;
                 }
@@ -202,6 +211,17 @@ namespace AddressBook
             PersonData.Remove(deletePerson);
             Console.WriteLine("User deleted successfully");
         }
-
+        public void SortByName()
+        {
+            Sort sortName = new Sort();
+            PersonData.Sort(sortName);
+            Console.WriteLine("Employees After sorting");
+            foreach (Person person in PersonData)
+            {
+                Console.WriteLine("First Name = {0}, Last Name = {1},  Address = {2}, City = {3}, State = {4}, Zip = {5}, Phone Number={6}",
+                    person.firstName, person.lastName, person.address, person.city, person.state, person.zip, person.phoneNumber);
+            }
+            Console.ReadKey();
+        }
     }
 }

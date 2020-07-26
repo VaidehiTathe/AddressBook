@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Linq.Expressions;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Xml.Serialization;
 
-namespace AddressBook
+namespace AddressBookNew
 {
-    class UserAddressBook
+    class AddressBookMain 
     {
         static void Main(string[] args)
         {
@@ -13,7 +14,7 @@ namespace AddressBook
             int flag = 0;
             do
             {
-                Console.WriteLine("Enter your choice 1.ADD 2.Display 3.Edit 4.Delete 5.Exit");
+                Console.WriteLine("Enter your choice 1.ADD 2.Display 3.Edit 4.Delete 5.SortByName 6.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -30,12 +31,15 @@ namespace AddressBook
                         person.DeletePerson();
                         break;
                     case 5:
+                        person.SortByName();
+                        break;
+                    case 6:
                         flag = 1;
                         break;
 
                 }
             } while (flag == 0);
-           
+
         }
     }
 }
