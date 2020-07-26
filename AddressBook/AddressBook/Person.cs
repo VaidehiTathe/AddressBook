@@ -5,6 +5,7 @@ using System.Data;
 using System.IO.Compression;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Linq;
 
 namespace AddressBookNew
 {
@@ -87,7 +88,7 @@ namespace AddressBookNew
         {
             foreach (Person person in PersonData)
             {
-                if(firstName.Equals(person.firstName))
+                if (firstName.Equals(person.firstName))
                 {
                     Console.WriteLine("Records already exists");
                     duplicate = true;
@@ -106,34 +107,37 @@ namespace AddressBookNew
         {
             Console.WriteLine("Enter total number of people that you want to add:");
             int totalnumber = Convert.ToInt32(Console.ReadLine());
-            int p;
 
             for (number = 1; number <= totalnumber; number++)
             {
-                    Console.WriteLine("Enter your first name:");
-                    string firstName = Console.ReadLine();
 
-                    Console.WriteLine("Enter your last name:");
-                    string lastName = Console.ReadLine();
-                    CheckDuplicate(firstName);
-                    if (duplicate == false)
-                    {
-                        Console.WriteLine("Enter your address:");
-                        string address = Console.ReadLine();
 
-                        Console.WriteLine("Enter your city:");
-                        string city = Console.ReadLine();
+                Console.WriteLine("Enter your first name:");
+                string firstName = Console.ReadLine();
 
-                        Console.WriteLine("Enter your state:");
-                        string state = Console.ReadLine();
+                Console.WriteLine("Enter your last name:");
+                string lastName = Console.ReadLine();
+                // CheckDuplicate(firstName);
+                if (duplicate == false)
+                {
+                    Console.WriteLine("Enter your address:");
+                    string address = Console.ReadLine();
 
-                        Console.WriteLine("Enter your zip code:");
-                        string zip = Console.ReadLine();
+                    Console.WriteLine("Enter your city:");
+                    string city = Console.ReadLine();
 
-                        Console.WriteLine("Enter your phoneNumber:");
-                        string phoneNumber = Console.ReadLine();
-                        PersonData.Add(new Person(firstName, lastName, address, city, state, zip, phoneNumber));
-                    }
+                    Console.WriteLine("Enter your state:");
+                    string state = Console.ReadLine();
+
+                    Console.WriteLine("Enter your zip code:");
+                    string zip = Console.ReadLine();
+
+                    Console.WriteLine("Enter your phoneNumber:");
+                    string phoneNumber = Console.ReadLine();
+                    PersonData.Add(new Person(firstName, lastName, address, city, state, zip, phoneNumber));
+                }
+
+
             }
         }
 
@@ -215,7 +219,46 @@ namespace AddressBookNew
         {
             Sort sortName = new Sort();
             PersonData.Sort(sortName);
-            Console.WriteLine("Employees After sorting");
+            Console.WriteLine("Persons After sorting");
+            foreach (Person person in PersonData)
+            {
+                Console.WriteLine("First Name = {0}, Last Name = {1},  Address = {2}, City = {3}, State = {4}, Zip = {5}, Phone Number={6}",
+                    person.firstName, person.lastName, person.address, person.city, person.state, person.zip, person.phoneNumber);
+            }
+            Console.ReadKey();
+        }
+
+        public void SortByCity()
+        {
+            Sortbycity sortName = new Sortbycity();
+            PersonData.Sort(sortName);
+            Console.WriteLine("Persons After sorting");
+            foreach (Person person in PersonData)
+            {
+                Console.WriteLine("First Name = {0}, Last Name = {1},  Address = {2}, City = {3}, State = {4}, Zip = {5}, Phone Number={6}",
+                    person.firstName, person.lastName, person.address, person.city, person.state, person.zip, person.phoneNumber);
+            }
+            Console.ReadKey();
+        }
+
+        public void SortByState()
+        {
+            Sortbystate sortName = new Sortbystate();
+            PersonData.Sort(sortName);
+            Console.WriteLine("Persons After sorting");
+            foreach (Person person in PersonData)
+            {
+                Console.WriteLine("First Name = {0}, Last Name = {1},  Address = {2}, City = {3}, State = {4}, Zip = {5}, Phone Number={6}",
+                    person.firstName, person.lastName, person.address, person.city, person.state, person.zip, person.phoneNumber);
+            }
+            Console.ReadKey();
+        }
+
+        public void SortByZip()
+        {
+            Sortbyzip sortName = new Sortbyzip();
+            PersonData.Sort(sortName);
+            Console.WriteLine("Persons After sorting");
             foreach (Person person in PersonData)
             {
                 Console.WriteLine("First Name = {0}, Last Name = {1},  Address = {2}, City = {3}, State = {4}, Zip = {5}, Phone Number={6}",
