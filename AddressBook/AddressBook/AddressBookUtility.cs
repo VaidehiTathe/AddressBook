@@ -10,7 +10,7 @@ namespace AddressBook
         public string firstName, lastName, address, city, state, zip, phoneNumber;
         bool duplicate;
         List<Person> PersonData = new List<Person>();
-        int number;
+        int numberOfPerson;
 
         Dictionary<string, Person> personName = new Dictionary<string, Person>();
         Dictionary<string, Person> personCity = new Dictionary<string, Person>();
@@ -38,9 +38,9 @@ namespace AddressBook
         public void AddPerson()
         {
             Console.WriteLine("Enter total number of people that you want to add:");
-            int totalnumber = Convert.ToInt32(Console.ReadLine());
+            int totalnumberOfPerson = Convert.ToInt32(Console.ReadLine());
 
-            for (number = 1; number <= totalnumber; number++)
+            for (numberOfPerson = 1; numberOfPerson <= totalnumberOfPerson; numberOfPerson++)
             {
 
 
