@@ -6,33 +6,33 @@ namespace AddressBookNew
 {
     public class Sort : IComparer<Person>
     {
-        public int Compare(Person x, Person y)
+        public int Compare(Person person1, Person person2)
         {
-            return x.firstName.CompareTo(y.firstName);
+            return person1.firstName.CompareTo(person2.firstName);
         }
     }
 
     public class Sortbycity : IComparer<Person>
     {
-        public int Compare(Person x, Person y)
+        public int Compare(Person person1, Person person2)
         {
-            return x.city.CompareTo(y.city);
+            return person1.city.CompareTo(person2.city);
         }
     }
 
     public class Sortbystate : IComparer<Person>
     {
-        public int Compare(Person x, Person y)
+        public int Compare(Person person1, Person person2)
         {
-            return x.state.CompareTo(y.state);
+            return person1.state.CompareTo(person2.state);
         }
     }
 
     public class Sortbyzip : IComparer<Person>
     {
-        public int Compare(Person x, Person y)
+        public int Compare(Person person1, Person person2)
         {
-            return x.zip.CompareTo(y.zip);
+            return person1.zip.CompareTo(person2.zip);
         }
     }
 
